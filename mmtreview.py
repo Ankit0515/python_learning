@@ -1,15 +1,22 @@
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 import pandas as pd
+from google_play_scraper import reviews_all, Sort
+import jason 
  
 # Reads 'Youtube04-Eminem.csv' file
-df = pd.read_csv(r"E:\data visualization\data set\mmtreviews.csv")
- 
+df = reviews_all(
+    'com.next.innovation.takatak',
+    sleep_milliseconds=0,
+    lang='en', #set language to english.
+    country='in', # set country to Hong Kong.
+    sort=Sort.NEWEST, # Default is Sort.
+)
 comment_words = ''
 stopwords = set(STOPWORDS)
  
 # iterate through the csv file
-for val in df.content:
+for val in df.CONTENT:
      
     # typecaste each val to string
     val = str(val)
